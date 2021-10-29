@@ -11,7 +11,55 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity2">
+
+        <RelativeLayout
+            android:id="@+id/a"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:background="@drawable/cus_border_grey"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_20sdp">
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_toStartOf="@+id/img_clearserach"
+                android:background="@null"
+                android:drawableStart="@drawable/search"
+                android:drawablePadding="@dimen/_5sdp"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:hint="Search"
+                android:imeOptions="actionDone"
+                android:inputType="textCapWords"
+                android:paddingStart="@dimen/_4sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11sdp" />
+
+            <ImageView
+                android:id="@+id/img_clearserach"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:background="@drawable/cus_circle_cancel"
+                android:elevation="@dimen/_1sdp"
+                android:padding="@dimen/_2sdp"
+                android:src="@drawable/cancel"
+                android:visibility="gone" />
+        </RelativeLayout>
         <androidx.recyclerview.widget.RecyclerView
+            android:layout_below="@+id/a"
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

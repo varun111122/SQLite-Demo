@@ -145,17 +145,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             val result = CropImage.getActivityResult(data)
             if (resultCode == Activity.RESULT_OK) {
                 val resultUri = result.getUri()
-
-//                val file = File(resultUri.getPath()!!)
                 imgToStore = MediaStore.Images.Media.getBitmap(contentResolver, resultUri)
                 binding.txtSelectImage.visibility = View.GONE
                 binding.imgProfile.setImageBitmap(imgToStore)
-
-                Log.e("Path", "" + resultUri);
-
-                //store image in multipart variable
-
-
             }
         } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
             val result = CropImage.getActivityResult(data)
@@ -185,6 +177,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     .isEmpty() && binding.imgProfile.drawable != null
             ) {
 
+
                 databaseHandler.storeUserData(
                     UserModel(
                         binding.edtName.text.toString(),
@@ -192,6 +185,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         imgToStore
                     )
                 )
+                binding.edtName.setText("")
+                binding.edtGender.setText("")
+                binding.imgProfile.setImageBitmap(null)
+                binding.txtSelectImage.visibility=View.VISIBLE
             } else {
                 Toast.makeText(this, "Please fill all userInfo", Toast.LENGTH_SHORT).show()
             }

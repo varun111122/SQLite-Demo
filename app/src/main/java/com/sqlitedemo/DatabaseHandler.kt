@@ -18,8 +18,9 @@ class DatabaseHandler(val context: Context) :
     SQLiteOpenHelper(context, DATABASENAME, null, DATABASE_VERSION) {
 
     private lateinit var byteArrayOutputStream: ByteArrayOutputStream
-    private val createTableQuery = "create table USER_TABLE (userName TEXT" +
-            ",userGender TEXT " + ",image BLOB)"
+    private val createTableQuery =
+        "create table USER_TABLE (userName TEXT" +
+                ",userGender TEXT " + ",image BLOB)"
 
     override fun onCreate(p0: SQLiteDatabase?) {
         try {
@@ -86,5 +87,16 @@ class DatabaseHandler(val context: Context) :
 
         }
         return list as ArrayList<UserModel>?
+    }
+
+    fun deleteAllTable() {
+        val db = this.writableDatabase
+        db.execSQL("DELETE FROM USER_TABLE")
+        db.close()
+    }
+
+    fun deleteSingle(name: String) {
+        val db = this.writableDatabase
+        db.delete("USER_TABLE", "userName" + "=?", arrayOf(name))
     }
 }
